@@ -4,7 +4,7 @@ import {
   render,
 } from './checkbox.js';
 
-export let tasksArray = [
+export const tasksArray = [
   {
     description: 'Thinking of a fat joint',
     completed: false,
@@ -22,21 +22,7 @@ export let tasksArray = [
   },
 ];
 
-function displayCheckbox() {
-  const checkbox = document.querySelectorAll('.checkbox');
-  const inputDisplay = document.querySelectorAll('.inputDisplay');
-  if (localStorage.getItem('tasksArray')) {
-    tasksArray = JSON.parse(localStorage.getItem('tasksArray'));
-    for (let i = 0; i < checkbox.length; i += 1) {
-      if (tasksArray[i].completed === true) {
-        checkbox[i].checked = true;
-        inputDisplay[i].classList.add('checkedDisplay');
-      }
-    }
-  }
-}
-
-window.addEventListener('load', (render(), displayCheckbox()));
+window.addEventListener('load', render());
 
 const checkbox = document.querySelectorAll('.checkbox');
 const inputDisplay = document.querySelectorAll('.inputDisplay');

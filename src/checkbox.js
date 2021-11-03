@@ -27,5 +27,4 @@ function updateStorage() {
 export {
   updateStorage,
   render,
-  tasksArray,
 };
