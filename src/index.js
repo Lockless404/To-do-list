@@ -1,8 +1,8 @@
 import './style.css';
-import { 
+import {
   updateStorage,
   render,
-  tasksArray
+  tasksArray,
 } from './checkbox.js';
 
 window.addEventListener('load', render());
@@ -18,7 +18,7 @@ for (let i = 0; i < checkbox.length; i += 1) {
       updateStorage();
     } else {
       inputDisplay[i].classList.add('checkedDisplay');
-      tasksArray[i].completed = true
+      tasksArray[i].completed = true;
       updateStorage();
     }
   });

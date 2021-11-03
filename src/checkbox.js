@@ -16,7 +16,6 @@ const tasksArray = [
   },
 ];
 
-
 const tasks = document.querySelector('.tasks');
 
 function render() {
@@ -36,13 +35,13 @@ function render() {
   }
 }
 
- function updateStorage() {
-  localStorage.clear();localStorage.clear();
+function updateStorage() {
+  localStorage.clear();
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 }
 
-export { 
+export {
   updateStorage,
   render,
-  tasksArray
-}
+  tasksArray,
+};

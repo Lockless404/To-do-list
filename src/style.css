@@ -41,7 +41,7 @@ button {
   font-size: 1rem;
 }
 
-.checkedDisplay{
+.checkedDisplay {
   text-decoration: line-through;
   color: rgba(0, 0, 0, 0.37);
 }
