@@ -3,9 +3,11 @@ import {
   updateStorage,
   render,
   tasksArray,
+  displayCheckbox,
+  crossWords,
 } from './checkbox.js';
 
-window.addEventListener('load', render());
+window.addEventListener('load', (render(),displayCheckbox()));
 
 const checkbox = document.querySelectorAll('.checkbox');
 const inputDisplay = document.querySelectorAll('.inputDisplay');
