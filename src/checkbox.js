@@ -1,4 +1,4 @@
-let tasksArray = [
+var tasksArray = [
   {
     description: 'Thinking of a fat joint',
     completed: false,
