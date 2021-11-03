@@ -1,4 +1,5 @@
 import './style.css';
+
 const tasks = document.querySelector('.tasks');
 
 const tasksArray = [
@@ -20,7 +21,7 @@ const tasksArray = [
 ];
 
 function render() {
-  for (let i = 0; i < tasksArray.length; i +=1) {
+  for (let i = 0; i < tasksArray.length; i += 1) {
     tasks.innerHTML += `
     <li class="displayList">
       <div class="innerItems">
@@ -34,5 +35,5 @@ function render() {
     </li>
     `;
   }
-};
+}
 window.addEventListener('load', render());
