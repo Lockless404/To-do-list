@@ -1,7 +1,85 @@
-.hello {
-  color: red;
+body {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-body {
-  background-color: bisque;
+form {
+  width: 65vw;
+  margin: 10rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.heading {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+}
+
+h1 {
+  font-size: 1rem;
+  font-family: sans-serif;
+  font-weight: 550;
+}
+
+button {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.inputField {
+  display: flex;
+}
+
+.input {
+  padding: 0.8rem 0.3rem 0.8rem 0.3rem;
+  border: 0;
+  width: 98%;
+  font-size: 1rem;
+}
+
+.enterBtn {
+  padding: 0.7rem;
+}
+
+.tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.displayList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.103);
+}
+
+.binButton {
+  display: none;
+}
+
+.listButton {
+  cursor: move;
+}
+
+.innerItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 0.7rem;
+}
+
+.removeAll {
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.103);
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 0.3rem 1rem 0.3rem;
+  color: rgba(0, 0, 0, 0.507);
+  background-color: rgba(0, 0, 0, 0.034);
 }
