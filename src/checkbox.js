@@ -1,4 +1,20 @@
-import tasksArray  from './index.js';
+const tasksArray = [
+  {
+    description: 'Thinking of a fat joint',
+    completed: false,
+    index: 0,
+  },
+  {
+    description: 'Rolling a fat joint',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'Smoking of a fat joint',
+    completed: false,
+    index: 2,
+  },
+];
 
 const tasks = document.querySelector('.tasks');
 
@@ -27,4 +43,5 @@ function updateStorage() {
 export {
   updateStorage,
   render,
+  tasksArray,
 };
