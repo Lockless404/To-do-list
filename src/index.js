@@ -4,7 +4,7 @@ import {
   render,
 } from './checkbox.js';
 
-export const tasksArray = [
+export default tasksArray = [
   {
     description: 'Thinking of a fat joint',
     completed: false,

@@ -1,4 +1,4 @@
-import {tasksArray} from './index.js'
+import tasksArray  from './index.js';
 
 const tasks = document.querySelector('.tasks');
 
