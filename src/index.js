@@ -2,25 +2,16 @@ import './style.css';
 import {
   render,
   displayCheckbox,
-  checkCheckbox
+  checkCheckbox,
 } from './checkbox.js';
-
-
-
 
 window.addEventListener('load', () => {
   render();
-  displayCheckbox()
+  displayCheckbox();
   const checkbox = document.querySelectorAll('.checkbox');
   for (let i = 0; i < checkbox.length; i += 1) {
     checkbox[i].addEventListener('change', () => {
-      checkCheckbox(i)
+      checkCheckbox(i);
     });
-  } 
+  }
 });
-
-
-
-
-
-
