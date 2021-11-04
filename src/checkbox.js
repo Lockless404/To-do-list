@@ -55,7 +55,6 @@ function displayCheckbox() {
 }
 
 function checkCheckbox(i) {
-
   const inputDisplay = document.querySelectorAll('.inputDisplay');
   if (tasksArray[i].completed === true) {
     inputDisplay[i].classList.remove('checkedDisplay');
@@ -69,9 +68,7 @@ function checkCheckbox(i) {
 }
 
 export {
-  updateStorage,
   render,
-  tasksArray,
   displayCheckbox,
   checkCheckbox,
 };
