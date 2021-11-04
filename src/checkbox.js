@@ -1,4 +1,5 @@
-const tasksArray = [
+let tasksArray = [
+
   {
     description: 'Thinking of a fat joint',
     completed: false,
@@ -36,12 +37,41 @@ function render() {
 }
 
 function updateStorage() {
-  localStorage.clear();
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+}
+
+function displayCheckbox() {
+  const checkbox = document.querySelectorAll('.checkbox');
+  const inputDisplay = document.querySelectorAll('.inputDisplay');
+  if (localStorage.getItem('tasksArray')) {
+    tasksArray = JSON.parse(localStorage.getItem('tasksArray'));
+    for (let i = 0; i < checkbox.length; i += 1) {
+      if (tasksArray[i].completed === true) {
+        checkbox[i].checked = true;
+        inputDisplay[i].classList.add('checkedDisplay');
+      }
+    }
+  }
+}
+
+function checkCheckbox(i) {
+
+  const inputDisplay = document.querySelectorAll('.inputDisplay');
+  if (tasksArray[i].completed === true) {
+    inputDisplay[i].classList.remove('checkedDisplay');
+    tasksArray[i].completed = false;
+    updateStorage();
+  } else {
+    inputDisplay[i].classList.add('checkedDisplay');
+    tasksArray[i].completed = true;
+    updateStorage();
+  }
 }
 
 export {
   updateStorage,
   render,
   tasksArray,
+  displayCheckbox,
+  checkCheckbox,
 };
