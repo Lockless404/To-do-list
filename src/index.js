@@ -114,17 +114,19 @@ class Checkbox {
 
   // Functions adds line across checkbox items when checked
   static checkState(el) {
-    if (el.classList.contains('removeButton')) {
+    if (el.classList.contains('checkbox')) {
+      const checkboxs = document.querySelectorAll('.checkbox');
       const tasks = Storage.getStorage();
-      for (let i = 0; i < tasks.length; i += 1) {
-        if (tasks[i].completed === true) {
-          tasks[i].completed = false;
+      checkboxs.forEach((checkbox, index) => {
+        const task = tasks[index];
+        if (checkbox.checked) {
+          task.completed = true;
           Storage.updateStorage(tasks);
-        } else {
-          tasks[i].completed = true;
+        } else if (!checkbox.checked) {
+          task.completed = false;
           Storage.updateStorage(tasks);
         }
-      }
+      });
     }
   }
 }
@@ -141,6 +143,7 @@ addBtn.addEventListener('click', (e) => {
   Ui.render(task);
   Ui.clearInput();
   Storage.addTasktoStorage(task);
+  Checkbox.display();
 });
 
 const removeButton = document.querySelector('.removeAll')
@@ -149,26 +152,13 @@ removeButton.addEventListener('click', (e) => {
   const tasks = Checkbox.unChecked();
   Storage.updateStorage(tasks);
   Ui.displayTasks();
+  Checkbox.display();
 });
 
 //Event Listner for checkbox state
-const checkboxs = document.querySelectorAll('.checkbox');
-checkboxs.forEach(checkbox => {
-  checkbox.addEventListener('change', () => {
-    Checkbox.checkState();
-    checkbox.nextElementSibling.classList.toggle('checkedDisplay')
-  });
+tasksDisplay.addEventListener('click', (e) => {
+  Checkbox.checkState(e.target);
+  e.target.nextElementSibling.classList.toggle('checkedDisplay');
 });
-
-
-
-
-
-// for (let i = 0; i < checkbox.length; i += 1) {
-//   console.log('ssss')
-//   checkbox[i].addEventListener('change', () => {
-//   Checkbox.checkState(i);
-//   });
-// }
 
 
