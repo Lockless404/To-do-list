@@ -62,6 +62,30 @@ class Ui {
     document.querySelector('.input').value = '';
   }
 
+  static displayDeleteButton(el) {
+    if (el.classList.contains('listButton')) {
+      el.classList.toggle('buttonDisappear');
+      el.nextElementSibling.classList.toggle('buttonAppear');
+      console.log('aaalal');
+    }
+  }
+
+  static removeDeleteButton(el) {
+    if (el.classList.contains('binButton')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+  // static removeDeleteButton() {
+  //   const listButtons = document.querySelectorAll('.listButton');
+  //   const deleteButtons = document.querySelectorAll('.binButton');
+  //   deleteButtons.forEach((deleteButton, index) => {
+  //     const listButton = listButtons[index];
+  //     listButton.classList.remove('buttonDisappear');
+  //     deleteButton.classList.remove('buttonAppear');
+  //   });
+  // }
+
 }
 
 class Storage {
@@ -127,6 +151,7 @@ class Checkbox {
           Storage.updateStorage(tasks);
         }
       });
+      el.nextElementSibling.classList.toggle('checkedDisplay')
     }
   }
 }
@@ -138,14 +163,16 @@ document.addEventListener('DOMContentLoaded', (Ui.displayTasks(), Checkbox.displ
 const addBtn = document.querySelector('.enterBtn');
 addBtn.addEventListener('click', (e) => {
   const input = document.querySelector('.input').value;
+  const tasks = Storage.getStorage();
   e.preventDefault();
-  const task = new Tasks(input, 0);
+  const task = new Tasks(input, tasks.length);
   Ui.render(task);
   Ui.clearInput();
   Storage.addTasktoStorage(task);
   Checkbox.display();
 });
 
+//Event listner for removing checked tasks
 const removeButton = document.querySelector('.removeAll')
 removeButton.addEventListener('click', (e) => {
   Ui.clearList();
@@ -158,7 +185,8 @@ removeButton.addEventListener('click', (e) => {
 //Event Listner for checkbox state
 tasksDisplay.addEventListener('click', (e) => {
   Checkbox.checkState(e.target);
-  e.target.nextElementSibling.classList.toggle('checkedDisplay');
+
+  Ui.displayDeleteButton(e.target);
+  
+  Ui.removeDeleteButton(e.target);
 });
-
-
