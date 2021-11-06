@@ -1,22 +1,11 @@
 import { remove } from 'lodash';
 import './style.css';
-// import {
-//   // render,
-//   displayCheckbox,
-//   checkCheckbox,
-// } from './checkbox.js';
-// import {} from './inputRecieve.js';
-
-// window.addEventListener('load', () => {
-//   render();
-//   displayCheckbox();
-//   
-// });
-
-
-
-
-
+import {
+  Checkbox,
+} from './checkbox.js';
+import {
+  Storage,
+} from './inputRecieve.js';
 
 const tasksDisplay = document.querySelector('.tasks');
 
@@ -75,97 +64,6 @@ class Ui {
       el.parentElement.parentElement.remove();
     }
   }
-
-}
-
-class Storage {
-
-  static getStorage() {
-    let tasks;
-    if (localStorage.getItem('tasks') === null) {
-      tasks = [];
-    } else {
-      tasks = JSON.parse(localStorage.getItem('tasks'));
-    }
-    return tasks;
-  }
-
-  static addTasktoStorage(task) {
-    const tasks = this.getStorage();
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-
-  static updateStorage(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-
-  static removeTask(description) {
-    const tasks = Storage.getStorage();
-    for (let i = 0; i < tasks.length; i += 1) {
-      if (description === tasks[i].description) {
-        tasks.splice(i, 1);
-      }
-    }
-    this.updateStorage(tasks);
-  }
-
-  static updateIndexValues() {
-    const tasks = this.getStorage();
-
-    tasks.forEach(task => {
-      task.index =  tasks.indexOf(task);
-    });
-
-    this.updateStorage(tasks);
-  }
-}
-
-class Checkbox {
-  
-  // Used on reload to display next function
-  static unChecked() {
-    const tasks = Storage.getStorage();
-    const unCheckedTasks = tasks.filter(task => task.completed === false);
-    return unCheckedTasks;
-  }
-
-  static Checked() {
-    const tasks = Storage.getStorage();
-    const CheckedTasks = tasks.filter(task => task.completed === true);
-    return CheckedTasks;
-  }
-  
-  static display() {
-    const checkbox = document.querySelectorAll('.checkbox');
-    const inputDisplay = document.querySelectorAll('.inputDisplay');
-    const tasks = Storage.getStorage();
-    for (let i = 0; i < checkbox.length; i += 1) {
-      if (tasks[i].completed === true) {
-        checkbox[i].checked = true;
-        inputDisplay[i].classList.add('checkedDisplay');
-      }
-    }
-  }
-
-  // Functions adds line across checkbox items when checked
-  static checkState(el) {
-    if (el.classList.contains('checkbox')) {
-      const checkboxs = document.querySelectorAll('.checkbox');
-      const tasks = Storage.getStorage();
-      checkboxs.forEach((checkbox, index) => {
-        const task = tasks[index];
-        if (checkbox.checked) {
-          task.completed = true;
-          Storage.updateStorage(tasks);
-        } else if (!checkbox.checked) {
-          task.completed = false;
-          Storage.updateStorage(tasks);
-        }
-      });
-      el.nextElementSibling.classList.toggle('checkedDisplay')
-    }
-  }
 }
 
 // Event Listener for display onload beginning
@@ -200,7 +98,6 @@ tasksDisplay.addEventListener('click', (e) => {
   Checkbox.checkState(e.target);
 
   Ui.displayDeleteButton(e.target);
-  
 });
 
 tasksDisplay.addEventListener('click', (e) => {
