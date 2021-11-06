@@ -1,74 +1,47 @@
-let tasksArray = [
+import Storage from './inputRecieve.js';
 
-  {
-    description: 'Thinking of a fat joint',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Rolling a fat joint',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Smoking of a fat joint',
-    completed: false,
-    index: 2,
-  },
-];
-
-const tasks = document.querySelector('.tasks');
-
-function render() {
-  for (let i = 0; i < tasksArray.length; i += 1) {
-    tasks.innerHTML += `
-    <li class="displayList">
-      <div class="innerItems">
-        <input class="checkbox" type="checkbox">
-        <p class="inputDisplay">${tasksArray[i].description}</p>
-      </div>
-      <div class="innerItems">
-        <button class="listButton"><i class='fas fa-ellipsis-v'></i></button>
-        <button class="binButton"><i class="material-icons" id="bin">delete</i></button>
-      </div>
-    </li>
-    `;
+export default class Checkbox {
+  // Used on reload to display next function
+  static unChecked() {
+    const tasks = Storage.getStorage();
+    const unCheckedTasks = tasks.filter((task) => task.completed === false);
+    return unCheckedTasks;
   }
-}
 
-function updateStorage() {
-  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-}
+  static Checked() {
+    const tasks = Storage.getStorage();
+    const CheckedTasks = tasks.filter((task) => task.completed === true);
+    return CheckedTasks;
+  }
 
-function displayCheckbox() {
-  const checkbox = document.querySelectorAll('.checkbox');
-  const inputDisplay = document.querySelectorAll('.inputDisplay');
-  if (localStorage.getItem('tasksArray')) {
-    tasksArray = JSON.parse(localStorage.getItem('tasksArray'));
+  static display() {
+    const checkbox = document.querySelectorAll('.checkbox');
+    const inputDisplay = document.querySelectorAll('.inputDisplay');
+    const tasks = Storage.getStorage();
     for (let i = 0; i < checkbox.length; i += 1) {
-      if (tasksArray[i].completed === true) {
+      if (tasks[i].completed === true) {
         checkbox[i].checked = true;
         inputDisplay[i].classList.add('checkedDisplay');
       }
     }
   }
-}
 
-function checkCheckbox(i) {
-  const inputDisplay = document.querySelectorAll('.inputDisplay');
-  if (tasksArray[i].completed === true) {
-    inputDisplay[i].classList.remove('checkedDisplay');
-    tasksArray[i].completed = false;
-    updateStorage();
-  } else {
-    inputDisplay[i].classList.add('checkedDisplay');
-    tasksArray[i].completed = true;
-    updateStorage();
+  // Functions adds line across checkbox items when checked
+  static checkState(el) {
+    if (el.classList.contains('checkbox')) {
+      const checkboxs = document.querySelectorAll('.checkbox');
+      const tasks = Storage.getStorage();
+      checkboxs.forEach((checkbox, index) => {
+        const task = tasks[index];
+        if (checkbox.checked) {
+          task.completed = true;
+          Storage.updateStorage(tasks);
+        } else if (!checkbox.checked) {
+          task.completed = false;
+          Storage.updateStorage(tasks);
+        }
+      });
+      el.nextElementSibling.classList.toggle('checkedDisplay');
+    }
   }
 }
-
-export {
-  render,
-  displayCheckbox,
-  checkCheckbox,
-};

@@ -28,6 +28,13 @@ button {
   background-color: #fff;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 5;
+}
+
+i {
+  position: relative;
+  z-index: -1;
 }
 
 .inputField {
@@ -64,11 +71,27 @@ button {
 }
 
 .binButton {
-  display: none;
+  transform: translateX(100rem);
+  width: 3rem;
+  height: 5.5vh;
+  padding: 0;
+  margin: 0;
+}
+
+.buttonAppear {
+  transform: translateX(0);
 }
 
 .listButton {
-  cursor: move;
+  width: 3rem;
+  height: 3vh;
+  transform: translateX(0);
+  padding: 0;
+  margin: 0;
+}
+
+.buttonDisappear {
+  transform: translateX(100rem);
 }
 
 .innerItems {
@@ -76,6 +99,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding-right: 0.7rem;
+  height: 100%;
 }
 
 .removeAll {
