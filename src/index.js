@@ -1,4 +1,3 @@
-import { remove } from 'lodash';
 import './style.css';
 import {
   Checkbox,
@@ -6,24 +5,17 @@ import {
 import {
   Storage,
 } from './inputRecieve.js';
+import {
+  Tasks,
+} from './task.js';
 
 const tasksDisplay = document.querySelector('.tasks');
 
-
-class Tasks {
-  constructor(description, index) {
-    this.description = description;
-    this.completed = false;
-    this.index = index;
-  }
-}
-
 class Ui {
-  
   static displayTasks() {
     const tasks = Storage.getStorage();
 
-    tasks.forEach(task =>{
+    tasks.forEach((task) => {
       this.render(task);
     });
   }
@@ -55,7 +47,6 @@ class Ui {
     if (el.classList.contains('listButton')) {
       el.classList.toggle('buttonDisappear');
       el.nextElementSibling.classList.toggle('buttonAppear');
-      console.log('aaalal');
     }
   }
 
@@ -82,9 +73,9 @@ addBtn.addEventListener('click', (e) => {
   Checkbox.display();
 });
 
-//Event listner for removing checked tasks
-const removeButton = document.querySelector('.removeAll')
-removeButton.addEventListener('click', (e) => {
+// Event listner for removing checked tasks
+const removeButton = document.querySelector('.removeAll');
+removeButton.addEventListener('click', () => {
   Ui.clearList();
   const tasks = Checkbox.unChecked();
   Storage.updateStorage(tasks);
@@ -93,7 +84,7 @@ removeButton.addEventListener('click', (e) => {
   Storage.updateIndexValues();
 });
 
-//Event Listner for checkbox state
+// Event Listner for checkbox state
 tasksDisplay.addEventListener('click', (e) => {
   Checkbox.checkState(e.target);
 
@@ -102,6 +93,7 @@ tasksDisplay.addEventListener('click', (e) => {
 
 tasksDisplay.addEventListener('click', (e) => {
   Ui.removeDeleteButton(e.target);
-  Storage.removeTask(e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.textContent);
+  const cousinElement = e.target.parentElement.previousElementSibling.firstElementChild;
+  Storage.removeTask(cousinElement.nextElementSibling.textContent);
   Storage.updateIndexValues();
 });

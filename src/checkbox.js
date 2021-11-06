@@ -2,21 +2,20 @@ import {
   Storage,
 } from './inputRecieve.js';
 
-class Checkbox {
-  
+export class Checkbox {
   // Used on reload to display next function
   static unChecked() {
     const tasks = Storage.getStorage();
-    const unCheckedTasks = tasks.filter(task => task.completed === false);
+    const unCheckedTasks = tasks.filter((task) => task.completed === false);
     return unCheckedTasks;
   }
 
   static Checked() {
     const tasks = Storage.getStorage();
-    const CheckedTasks = tasks.filter(task => task.completed === true);
+    const CheckedTasks = tasks.filter((task) => task.completed === true);
     return CheckedTasks;
   }
-  
+
   static display() {
     const checkbox = document.querySelectorAll('.checkbox');
     const inputDisplay = document.querySelectorAll('.inputDisplay');
@@ -44,11 +43,7 @@ class Checkbox {
           Storage.updateStorage(tasks);
         }
       });
-      el.nextElementSibling.classList.toggle('checkedDisplay')
+      el.nextElementSibling.classList.toggle('checkedDisplay');
     }
   }
 }
-
-export {
-  Checkbox,
-};
