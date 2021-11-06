@@ -4,9 +4,6 @@ import Storage from './inputRecieve.js';
 import Tasks from './task.js';
 
 const tasksDisplay = document.querySelector('.tasks');
-const listButton = document.querySelectorAll('.listButton');
-const binButton = document.querySelectorAll('.binButton');
-
 
 class Ui {
   static displayTasks() {
@@ -57,12 +54,8 @@ class Ui {
     if (el.classList.contains('inputDisplay')) {
       
       el.parentElement.nextElementSibling.firstElementChild.classList.add('buttonDisappear');
-      el.parentElement.nextElementSibling.firstElementChild.nextElementSibling.classList.add('buttonAppear')
+      el.parentElement.nextElementSibling.firstElementChild.nextElementSibling.classList.add('buttonAppear');
     }
-  }
-
-  static updateDescription(el) {
-    
   }
 }
 
@@ -97,28 +90,26 @@ removeButton.addEventListener('click', () => {
 tasksDisplay.addEventListener('click', (e) => {
   if (e.target.classList.contains('checkbox')) {
     Checkbox.checkState(e.target);
-  }
-  else if (e.target.classList.contains('binButton')) {
+  } else if (e.target.classList.contains('binButton')) {
     Ui.removeDeleteButton(e.target);
-    Storage.removeTask(e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.textContent);
+    const cousinElemente = e.target.parentElement.previousElementSibling.firstElementChild;
+    Storage.removeTask(cousinElement.nextElementSibling.textContent);
     Storage.updateIndexValues();
-  }
-  else if (e.target.classList.contains('inputDisplay')) {
+  } else if (e.target.classList.contains('inputDisplay')) {
     Ui.editInput(e.target);
   }
-
 });
 
 tasksDisplay.addEventListener('keydown', (e) => {
-  const displayInput = document.querySelectorAll('.inputDisplay')
+  const displayInput = document.querySelectorAll('.inputDisplay');
   const tasks = Storage.getStorage();
   if (e.which === 13) {
     e.preventDefault();
     displayInput.forEach((input, index) => {
-      let task = tasks[index];
-      if (input.innerHTML != task.description) {
+      const task = tasks[index];
+      if (input.innerHTML !== task.description) {
         task.description = input.innerHTML;
-    }
+      }
     });
     Storage.updateStorage(tasks);
   }
