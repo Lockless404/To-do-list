@@ -107,6 +107,16 @@ class Storage {
   static updateStorage(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
+
+  static removeTask(description) {
+    const tasks = Storage.getStorage();
+    for (let i = 0; i < tasks.length; i += 1) {
+      if (description === tasks[i].description) {
+        tasks.splice(i, 1);
+      }
+    }
+    this.updateStorage(tasks);
+  }
 }
 
 class Checkbox {
@@ -188,5 +198,9 @@ tasksDisplay.addEventListener('click', (e) => {
 
   Ui.displayDeleteButton(e.target);
   
+});
+
+tasksDisplay.addEventListener('click', (e) => {
   Ui.removeDeleteButton(e.target);
+  Storage.removeTask(e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.textContent);
 });
