@@ -96,6 +96,8 @@ tasksDisplay.addEventListener('click', (e) => {
     Storage.updateIndexValues();
   } else if (e.target.classList.contains('inputDisplay')) {
     Ui.editInput(e.target);
+  } else if (e.target.classList.contains('listButton')) {
+    Ui.displayDeleteButton(e.target);
   }
 });
 
