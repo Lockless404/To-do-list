@@ -1,8 +1,6 @@
-import {
-  Storage,
-} from './inputRecieve.js';
+import Storage from './inputRecieve.js';
 
-export class Checkbox {
+export default class Checkbox {
   // Used on reload to display next function
   static unChecked() {
     const tasks = Storage.getStorage();

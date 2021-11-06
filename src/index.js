@@ -1,13 +1,7 @@
 import './style.css';
-import {
-  Checkbox,
-} from './checkbox.js';
-import {
-  Storage,
-} from './inputRecieve.js';
-import {
-  Tasks,
-} from './task.js';
+import Checkbox from './checkbox.js';
+import Storage from './inputRecieve.js';
+import Tasks from './task.js';
 
 const tasksDisplay = document.querySelector('.tasks');
 

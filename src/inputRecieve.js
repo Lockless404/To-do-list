@@ -1,4 +1,4 @@
-export class Storage {
+export default class Storage {
   static getStorage() {
     let tasks;
     if (localStorage.getItem('tasks') === null) {
@@ -32,8 +32,8 @@ export class Storage {
   static updateIndexValues() {
     const tasks = this.getStorage();
 
-    tasks.forEach(task => {
-      task.index = (tasks).indexOf(task);
+    tasks.forEach((task) => {
+      task.index = tasks.indexOf(task);
     });
 
     this.updateStorage(tasks);
