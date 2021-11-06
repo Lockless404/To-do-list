@@ -76,19 +76,10 @@ class Ui {
     }
   }
 
-  // static removeDeleteButton() {
-  //   const listButtons = document.querySelectorAll('.listButton');
-  //   const deleteButtons = document.querySelectorAll('.binButton');
-  //   deleteButtons.forEach((deleteButton, index) => {
-  //     const listButton = listButtons[index];
-  //     listButton.classList.remove('buttonDisappear');
-  //     deleteButton.classList.remove('buttonAppear');
-  //   });
-  // }
-
 }
 
 class Storage {
+
   static getStorage() {
     let tasks;
     if (localStorage.getItem('tasks') === null) {
@@ -104,6 +95,7 @@ class Storage {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
+
   static updateStorage(tasks) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
@@ -115,6 +107,16 @@ class Storage {
         tasks.splice(i, 1);
       }
     }
+    this.updateStorage(tasks);
+  }
+
+  static updateIndexValues() {
+    const tasks = this.getStorage();
+
+    tasks.forEach(task => {
+      task.index =  tasks.indexOf(task);
+    });
+
     this.updateStorage(tasks);
   }
 }
@@ -190,6 +192,7 @@ removeButton.addEventListener('click', (e) => {
   Storage.updateStorage(tasks);
   Ui.displayTasks();
   Checkbox.display();
+  Storage.updateIndexValues();
 });
 
 //Event Listner for checkbox state
@@ -203,4 +206,5 @@ tasksDisplay.addEventListener('click', (e) => {
 tasksDisplay.addEventListener('click', (e) => {
   Ui.removeDeleteButton(e.target);
   Storage.removeTask(e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.textContent);
+  Storage.updateIndexValues();
 });
