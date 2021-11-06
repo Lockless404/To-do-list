@@ -9,7 +9,6 @@ import {
 
 const tasksDisplay = document.querySelector('.tasks');
 
-
 class Tasks {
   constructor(description, index) {
     this.description = description;
