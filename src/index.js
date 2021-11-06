@@ -52,7 +52,6 @@ class Ui {
 
   static editInput(el) {
     if (el.classList.contains('inputDisplay')) {
-      
       el.parentElement.nextElementSibling.firstElementChild.classList.add('buttonDisappear');
       el.parentElement.nextElementSibling.firstElementChild.nextElementSibling.classList.add('buttonAppear');
     }
@@ -93,7 +92,7 @@ tasksDisplay.addEventListener('click', (e) => {
   } else if (e.target.classList.contains('binButton')) {
     Ui.removeDeleteButton(e.target);
     const cousinElemente = e.target.parentElement.previousElementSibling.firstElementChild;
-    Storage.removeTask(cousinElement.nextElementSibling.textContent);
+    Storage.removeTask(cousinElemente.nextElementSibling.textContent);
     Storage.updateIndexValues();
   } else if (e.target.classList.contains('inputDisplay')) {
     Ui.editInput(e.target);
