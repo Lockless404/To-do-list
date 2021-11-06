@@ -4,6 +4,9 @@ import Storage from './inputRecieve.js';
 import Tasks from './task.js';
 
 const tasksDisplay = document.querySelector('.tasks');
+const listButton = document.querySelectorAll('.listButton');
+const binButton = document.querySelectorAll('.binButton');
+
 
 class Ui {
   static displayTasks() {
@@ -19,7 +22,7 @@ class Ui {
     <li class="displayList">
       <div class="innerItems">
         <input class="checkbox" type="checkbox">
-        <p class="inputDisplay">${task.description}</p>
+        <p class="inputDisplay" contentEditable = true>${task.description}</p>
       </div>
       <div class="innerItems">
         <button class="listButton"><i class='fas fa-ellipsis-v'></i></button>
@@ -48,6 +51,18 @@ class Ui {
     if (el.classList.contains('binButton')) {
       el.parentElement.parentElement.remove();
     }
+  }
+
+  static editInput(el) {
+    if (el.classList.contains('inputDisplay')) {
+      
+      el.parentElement.nextElementSibling.firstElementChild.classList.add('buttonDisappear');
+      el.parentElement.nextElementSibling.firstElementChild.nextElementSibling.classList.add('buttonAppear')
+    }
+  }
+
+  static updateDescription(el) {
+    
   }
 }
 
@@ -80,14 +95,31 @@ removeButton.addEventListener('click', () => {
 
 // Event Listner for checkbox state
 tasksDisplay.addEventListener('click', (e) => {
-  Checkbox.checkState(e.target);
+  if (e.target.classList.contains('checkbox')) {
+    Checkbox.checkState(e.target);
+  }
+  else if (e.target.classList.contains('binButton')) {
+    Ui.removeDeleteButton(e.target);
+    Storage.removeTask(e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling.textContent);
+    Storage.updateIndexValues();
+  }
+  else if (e.target.classList.contains('inputDisplay')) {
+    Ui.editInput(e.target);
+  }
 
-  Ui.displayDeleteButton(e.target);
 });
 
-tasksDisplay.addEventListener('click', (e) => {
-  Ui.removeDeleteButton(e.target);
-  const cousinElement = e.target.parentElement.previousElementSibling.firstElementChild;
-  Storage.removeTask(cousinElement.nextElementSibling.textContent);
-  Storage.updateIndexValues();
+tasksDisplay.addEventListener('keydown', (e) => {
+  const displayInput = document.querySelectorAll('.inputDisplay')
+  const tasks = Storage.getStorage();
+  if (e.which === 13) {
+    e.preventDefault();
+    displayInput.forEach((input, index) => {
+      let task = tasks[index];
+      if (input.innerHTML != task.description) {
+        task.description = input.innerHTML;
+    }
+    });
+    Storage.updateStorage(tasks);
+  }
 });
