@@ -37,7 +37,7 @@ To get a local copy up and running in your machine:
 
 - GitHub: [@Lockless404](https://github.com/Lockless404)
 - Twitter: [@hamza_tarar10](https://twitter.com/hamza_tarar10)
-- LinkedIn: [Hamza_Tarar] (https://www.linkedin.com/in/hamza-tarar-639685216/)
+- LinkedIn: [Hamza Tarar](https://www.linkedin.com/in/hamza-tarar-639685216/)
 
 ## 🤝 Contributing
 
