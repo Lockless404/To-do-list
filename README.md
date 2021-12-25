@@ -16,7 +16,7 @@ User is allowed to add,remove, edit and remove all checked tasks. All tasks are 
 
 ## Live Demo
 
-[Check out the Live Demo!](https://lockless404.github.io/To-do-list/)
+[Check out the Live Demo!](https://boring-darwin-6eab87.netlify.app/)
 
 
 ## Getting Started
